@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Página Principal</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      width: 100vw;
+      background: url("assets/FondoP-AM-LAMBAYEQUE.svg") no-repeat center center;
+      background-size: cover; /* Se adapta a toda la pantalla */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .btn-puntos {
+      width: 200px;
+      height: 60px;
+      background-color: #1B712D;
+      color: white;
+      font-size: 20px;
+      font-weight: bold;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+      transition: transform 0.2s, background-color 0.3s;
+    }
+
+    .btn-puntos:hover {
+      background-color: #1B712D;
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+<body>
+  <button class="btn-puntos" onclick="window.location.href='ranking.html'">Puntos</button>
+</body>
+</html>
