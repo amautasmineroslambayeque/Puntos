@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pantalla Principal</title>
+  <style>
+    /* Fondo general (PC/Laptop) */
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: url("assets/fondo-desktop.svg") no-repeat center center;
+      background-size: cover;
+      background-color: black;
+    }
+
+    /* Fondo adaptado para celulares */
+    @media (max-width: 768px) {
+      body {
+        background: url("assets/fondo-mobile.svg") no-repeat center center;
+        background-size: cover;
+        background-color: black;
+      }
+    }
+
+    /* Estilo del botón */
+    .btn {
+      padding: 15px 40px;
+      font-size: 24px;
+      font-weight: bold;
+      color: white;
+      background-color: #1B712D;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+
+    .btn:hover {
+      background-color: #1B712D;
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+<body>
+  <a href="puntos.html">
+    <button class="btn">Puntos</button>
+  </a>
+</body>
+</html>

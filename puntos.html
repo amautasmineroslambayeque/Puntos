@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Puntaje de Voluntarios AM Lambayeque</title>
+  <style>
+    :root {
+      --verde-principal: #1B712D;
+      --verde-secundario: #6EC02E;
+      --amarillo-principal: #C39B16;
+      --amarillo-secundario: #FEC600;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-image: url("assets/FONDO.svg");
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      color: #1B712D;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    header {
+  padding: 10px 20px;
+  background-color: white;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: nowrap; /* siempre en fila */
+  text-align: center;
+}
+
+header h1 {
+  flex: 1; /* ocupa todo el espacio disponible en el medio */
+  margin: 0;
+  font-size: 2rem;
+  color: var(--verde-principal);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
+
+.logo-izquierda,
+.logo-derecha {
+  width: 70px;
+  height: auto;
+}
+
+/* Ajustes para pantallas pequeñas */
+@media (max-width: 600px) {
+  header h1 {
+    font-size: 1.4rem; /* texto más pequeño */
+  }
+
+  .logo-izquierda,
+  .logo-derecha {
+    width: 45px; /* logos más pequeños */
+  }
+}
+
+
+    main {
+      flex: 1;
+      padding: 20px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .voluntario {
+    position: relative;
+    width: 200px;
+    padding: 10px;
+    border-radius: 12px;
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    margin: 10px;
+  }
+
+  .voluntario img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+
+  .medalla {
+    position: absolute;
+    top: -10px;
+    right: 170px;
+    font-size: 32px;
+    
+  }
+
+  .estrella {
+  position: absolute;
+  top: 0px;
+  right: 1px;
+  font-size: 24px;
+
+}
+
+    .voluntario h2 {
+      margin: 10px 0 5px;
+      font-size: 1.2rem;
+    }
+
+    .voluntario p {
+      font-weight: bold;
+    }
+
+    footer {
+      text-align: center;
+      padding: 15px 10px;
+      background-color: white;
+      margin-top: auto;
+    }
+
+    .lema {
+      font-size: 1.2rem;
+      font-weight: bold;
+    }
+
+    .lema span.verde {
+      color: var(--verde-principal);
+    }
+
+    .lema span.amarillo {
+      color: var(--amarillo-principal);
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+  <img src="assets/logo-am.svg" alt="Logo Amautas Mineros" class="logo-izquierda">
+  <h1>Puntaje de Voluntarios</h1>
+  <img src="assets/logo-am-lambayeque.svg" alt="Logo Amautas Mineros Lambayeque" class="logo-derecha">
+</header>
+
+
+
+  <main id="lista-voluntarios">
+    <!-- Se cargan los voluntarios aquí -->
+  </main>
+
+  <footer>
+    <div class="lema">
+      <span class="verde">¡DIFUNDIMOS MINERÍA, </span><span class="amarillo">GENERAMOS DESARROLLO!</span>
+    </div>
+  </footer>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+    import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyCZr4J0sSjqbeTDoyjDE-_lVCytlde_nAE",
+      authDomain: "puntosvoluntarios-b9af5.firebaseapp.com",
+      databaseURL: "https://puntosvoluntarios-b9af5-default-rtdb.firebaseio.com",
+      projectId: "puntosvoluntarios-b9af5",
+      storageBucket: "puntosvoluntarios-b9af5.appspot.com",
+      messagingSenderId: "531653166997",
+      appId: "1:531653166997:web:5df264e360fbcb0d14d89c",
+      measurementId: "G-MBCMCHBYPV"
+    };
+
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+
+  const contenedor = document.getElementById("lista-voluntarios");
+
+  async function cargarVoluntarios() {
+  const querySnapshot = await getDocs(collection(db, "voluntarios"));
+  const voluntarios = [];
+
+  querySnapshot.forEach((doc) => {
+    const voluntario = doc.data();
+    voluntarios.push(voluntario);
+  });
+
+  // Ordenar por puntos descendente
+  voluntarios.sort((a, b) => b.puntos - a.puntos);
+
+  // Lista de miembros JDR
+  const miembrosJDR = [
+    "Marin Herrera Nadia",
+    "Arcila Silva Jordano",
+    "Gonzales Culque Andrea",
+    "Camacho Noriega Alejandra"
+  ];
+
+  voluntarios.forEach((voluntario, index) => {
+    const div = document.createElement("div");
+    div.className = "voluntario";
+
+    // Agregar medalla si está en el top 3
+    let medalla = "";
+    if (index === 0) medalla = "🥇";
+    else if (index === 1) medalla = "🥈";
+    else if (index === 2) medalla = "🥉";
+
+    // Agregar estrella si es miembro JDR
+    const esJDR = miembrosJDR.includes(voluntario.nombre);
+    const estrella = esJDR ? "⭐" : "";
+
+    div.innerHTML = `
+      <div class="medalla">${medalla}</div>
+      <div class="estrella">${estrella}</div>
+      <img src="${voluntario.foto}" alt="${voluntario.nombre}">
+      <h2>${voluntario.nombre}</h2>
+      <p>Puntos: ${voluntario.puntos}</p>
+    `;
+
+    contenedor.appendChild(div);
+  });
+}
+
+  cargarVoluntarios();
+</script>
+
+
+</body>
+</html>
