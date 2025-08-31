@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pantalla Principal</title>
+  <style>
+    /* Fondo general (PC/Laptop) */
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: url("assets/fondo-desktop.svg") no-repeat center center;
+      background-size: cover;
+      background-color: black;
+    }
+
+    /* Fondo adaptado para celulares */
+    @media (max-width: 768px) {
+      body {
+        background: url("assets/fondo-mobile.svg") no-repeat center center;
+        background-size: cover;
+        background-color: black;
+      }
+    }
+
+    /* Estilo del botón */
+    .btn {
+      padding: 15px 40px;
+      font-size: 24px;
+      font-weight: bold;
+      color: white;
+      background-color: #1B712D;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+
+    .btn:hover {
+      background-color: #1B712D;
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+<body>
+  <a href="puntos.html">
+    <button class="btn">Puntos</button>
+  </a>
+
+
+
+  <title>Botón invisible</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      background: url("assets/fondo-desktop.svg") no-repeat center center fixed;
+      background-size: cover;
+      position: relative;
+    }
+
+    /* Botón invisible */
+    .boton-invisible {
+      position: absolute;
+      top: 75%;   /* Ajusta la posición vertical */
+      left: 73.6%;  /* Ajusta la posición horizontal */
+      width: 120px;  /* Ajusta el tamaño del área clickeable */
+      height: 200px;
+      background: #1B712D; 
+      border: none;
+      cursor: pointer;
+      opacity: 0%; /* Invisible pero clickeable */
+    }
+  </style>
+</head>
+<body>
+    <!-- Botón invisible para Instagram Jordano -->
+  <a href="https://www.instagram.com/jordano_arcila?igsh=aWI1YTVpc3JsbTEz" 
+     target="_blank" 
+     class="boton-invisible" 
+     style="top: 72%; left: 73.6%;"></a>
+
+  <!-- Botón invisible para Instagram Andrea -->
+  <a href="https://www.instagram.com/andrea_culque?igsh=MWNyenl3YnE0MGE0cQ==" 
+     target="_blank" 
+     class="boton-invisible" 
+     style="top: 78%; left: 18%;"></a>
+
+  <!-- Botón invisible para Instagram Nadia -->
+  <a href="https://www.instagram.com/itts.nadiiis?igsh=MTkwOThlMjlkYTJsMA==" 
+     target="_blank" 
+     class="boton-invisible" 
+     style="top: 72%; left: 83%;"></a>
+
+     <!-- Botón invisible para Instagram Alejandra -->
+  <a href="https://www.instagram.com/ale6.c?igsh=MXhmcXE3NWx3ODZ6Nw==" 
+     target="_blank" 
+     class="boton-invisible" 
+     style="top: 72%; left: 92%;"></a>
+</body>
+</html>
+
